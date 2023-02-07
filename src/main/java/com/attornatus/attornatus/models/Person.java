@@ -12,7 +12,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 
-import com.attornatus.attornatus.models.Address;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
@@ -29,7 +28,7 @@ public class Person {
     @Column(nullable = false)
     private String nome;
 
-    @JsonFormat(pattern = "yyyy/MM/dd")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataDeNascimento;
 
     @OneToMany(cascade = CascadeType.ALL)

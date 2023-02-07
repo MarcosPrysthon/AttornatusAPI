@@ -13,7 +13,6 @@ import com.attornatus.attornatus.models.Person;
 import com.attornatus.attornatus.models.Address;
 import com.attornatus.attornatus.repository.PersonRepository;
 
-import java.util.Optional;
 import java.util.List;
 
 @RestController
@@ -33,19 +32,23 @@ public class PersonController {
         return personRepository.findByNome(nome);
     }
 
-    @GetMapping("id/{id}")
-    public Optional<Person> findById(@PathVariable Long id){
-        return personRepository.findById(id);
-    }
-
     @PostMapping
     public Person create(@RequestBody Person person) {
-        return personRepository.save(person);
+        Person existsPerson = personRepository.findByNome(person.getNome());
+        if(existsPerson == null) return personRepository.save(person);
+
+        return null;
     }
 
-    @PutMapping
-    public Person update(@RequestBody Person person){
-        return personRepository.save(person);
+    @PutMapping("/{nome}")
+    public Person update(@RequestBody Person person, @PathVariable String nome){
+        Person updatePerson = personRepository.findByNome(nome);
+
+        if(updatePerson != null) {
+            return personRepository.save(person);
+        }
+
+        return null;
     }
     
     @GetMapping("/{nome}/enderecos")
