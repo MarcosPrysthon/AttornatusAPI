@@ -1,6 +1,5 @@
 package com.attornatus.attornatus.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.attornatus.attornatus.models.Person;
 import com.attornatus.attornatus.models.Address;
-import com.attornatus.attornatus.repository.PersonRepository;
+import com.attornatus.attornatus.services.PersonService;
 
 import java.util.List;
 
@@ -19,54 +18,39 @@ import java.util.List;
 @RequestMapping("/pessoas")
 public class PersonController {
 
-    @Autowired
-    private PersonRepository personRepository;
+    private PersonService personService;
+
+    public PersonController(PersonService personService){
+        this.personService = personService;
+    }
 
     @GetMapping
     public List<Person> index() {
-        return personRepository.findAll();
+        return personService.index();
     }
 
     @GetMapping("/{nome}")
     public Person findByNome(@PathVariable String nome){
-        return personRepository.findByNome(nome);
+        return personService.findByNome(nome);
     }
 
     @PostMapping
     public Person create(@RequestBody Person person) {
-        Person existsPerson = personRepository.findByNome(person.getNome());
-        if(existsPerson == null) return personRepository.save(person);
-
-        return null;
+        return personService.create(person);
     }
 
     @PutMapping("/{nome}")
     public Person update(@RequestBody Person person, @PathVariable String nome){
-        Person updatePerson = personRepository.findByNome(nome);
-
-        if(updatePerson != null) {
-            return personRepository.save(person);
-        }
-
-        return null;
+        return personService.update(person, nome);
     }
     
     @GetMapping("/{nome}/enderecos")
     public List<Address> indexAddress(@PathVariable String nome){
-        Person person = personRepository.findByNome(nome);
-
-        return person.getEnderecos();
+        return personService.indexAddress(nome);
     }
 
     @GetMapping("/{nome}/enderecos/principal")
     public Address getMainAddress(@PathVariable String nome){
-        Person person = personRepository.findByNome(nome);
-        Address mainAddress = new Address();
-
-        for(Address add : person.getEnderecos()) {
-            if(add.getPrincipal()) mainAddress = add;
-        }
-
-        return mainAddress;
+        return personService.getMainAddress(nome);
     }
 }
