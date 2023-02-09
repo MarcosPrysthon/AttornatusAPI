@@ -29,7 +29,7 @@ public class Person {
     private String nome;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date dataDeNascimento;
+    private String dataDeNascimento;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_person_id", referencedColumnName = "person_id")

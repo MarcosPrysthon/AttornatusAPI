@@ -1,5 +1,7 @@
 package com.attornatus.attornatus.models;
 
+import org.springframework.stereotype.Component;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
