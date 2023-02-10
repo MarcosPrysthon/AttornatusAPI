@@ -23,6 +23,10 @@ Utilizando a rota "/pessoas" e os métodos HTTP Get e Post, podemos criar e list
 [video (3).webm](https://user-images.githubusercontent.com/43181684/217971604-77cff1c0-36b7-48d4-b1aa-9b9b1d5c7fca.webm)
 
 # Conclusão
-
 Por fim, também foram implementados testes de integração com os Controllers e Services da minha API. </br>
-De antemão, gostaria de agradecer a participação no processo seletivo e espero vê-los na próxima etapa :)
+
+Vale lembrar que também coloquei nesse repositório o arquivo 'avaliao_desenvolvedor_backend' enviado para mim via email. Nele eu respondo as perguntas feitas na seção 'Qualidade de código'. </br>
+
+De antemão, gostaria de agradecer a participação no processo seletivo e espero vê-los na próxima etapa :) 
+
+
