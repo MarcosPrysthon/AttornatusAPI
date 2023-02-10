@@ -2,7 +2,7 @@
 
 Oi, Attornatus! Como vai por aí? </br> </br>
 Este repositório é para compartilhar minha API criada utilizando Spring Boot. </br>
-Estarei deixando o funcionamento da API via GIFs para melhor entendimento do projeto.
+Estarei deixando o funcionamento da API via vídeos para melhor entendimento do projeto.
 
 # Criação, modificação e listagem de pessoas
 
